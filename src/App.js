@@ -3,6 +3,12 @@ import AddToDo from './Component/Adding.js';
 import ToDo from './Component/Do.js';
 import UpdateTasks from './Component/Update.js';
 import Alls from './Component/ForAll.js';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Login from "./Component/Login";
+import Register from "./Component/Register";
+import Reset from "./Component/Reset";
+import Dashboard from "./Component/Dashboard";
+
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -139,59 +145,66 @@ function App() {
   }
 
   return (
-    <div className="container App">
-
-    <br /><br />
-    <div className='Nama'>
-      <h1>Andrean Hasan</h1>
-      <h4>2501982550</h4>
-      <h3>My ToDo List</h3>
-
+    <><div className="app">
+       <Router>
+        <Routes>
+          <Route exact path="/" element={<Login />} />
+          <Route exact path="/register" element={<Register />} />
+          <Route exact path="/reset" element={<Reset />} />
+          <Route exact path="/dashboard" element={<Dashboard />} />
+        </Routes>
+      </Router>
     </div>
     
-    <br /><br />
+    <div className="container App">
 
-    {updateData && updateData ? (
-      <UpdateTasks 
-        updateData={updateData}
-        updateDatas={updateDatas}
-        changeTask={changeTask}
-        updateTask={updateTask}
-        changeDesc={changeDesc}
-        updateDesc={updateDesc}
-        cancelUpdate={cancelUpdate}
-      />
-    ) : (
-      <AddToDo
-        newTask = {newTask}
-        setNewTask = {setNewTask}
-        newDesc = {newDesc}
-        setNewDesc = {setNewDesc}
-        addTask = {addTask}
-        addDesc = {addDesc}
-      />
-    )}
+        <br /><br />
+        <div className='Nama'>
+          <h1>Andrean Hasan</h1>
+          <h4>2501982550</h4>
+          <h3>My ToDo List</h3>
 
-    <Alls 
-      a = {pickAll}
-      b = {pickDone}
-      c = {pickUndone}
-      />
-    {/* Display ToDos */}
+        </div>
 
-    {toDo && toDo.length ? '' : 'ADD NEW TASK :D'}
+        <br /><br />
 
-    <ToDo
-      toDo={toDo}
-      markDone={markDone}
-      setUpdateData={setUpdateData}
-      deleteTask={deleteTask}
-      aa = {all}
-      b = {choose_complete}
-      c = {choose_incomplete}
-    />  
+        {updateData && updateData ? (
+          <UpdateTasks
+            updateData={updateData}
+            updateDatas={updateDatas}
+            changeTask={changeTask}
+            updateTask={updateTask}
+            changeDesc={changeDesc}
+            updateDesc={updateDesc}
+            cancelUpdate={cancelUpdate} />
+        ) : (
+          <AddToDo
+            newTask={newTask}
+            setNewTask={setNewTask}
+            newDesc={newDesc}
+            setNewDesc={setNewDesc}
+            addTask={addTask}
+            addDesc={addDesc} />
+        )}
 
-    </div>
+        <Alls
+          a={pickAll}
+          b={pickDone}
+          c={pickUndone} />
+        {/* Display ToDos */}
+
+        {toDo && toDo.length ? '' : 'ADD NEW TASK :D'}
+
+        <ToDo
+          toDo={toDo}
+          markDone={markDone}
+          setUpdateData={setUpdateData}
+          deleteTask={deleteTask}
+          aa={all}
+          b={choose_complete}
+          c={choose_incomplete} />
+
+      </div></>
   );
 }
 
