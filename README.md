@@ -19,3 +19,5 @@ what things that can be highlighted from the project?
 The downside of my code:
 
 I did not finish the due date part (not required but i was thinking on making it)
+
+I also add the image of my firebase
